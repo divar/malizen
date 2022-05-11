@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Resident;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResidentController extends Controller
 {
@@ -14,8 +15,9 @@ class ResidentController extends Controller
      */
     public function index()
     {
-        return view('home', [
-            'user' => User::findOrFail($id)
+        return view('pages.resident.index', [
+            'user' => Auth::user(),
+            'residents' => Resident::paginate(10)
         ]);
     }
 
