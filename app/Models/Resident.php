@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Resident extends Model
 {
     use HasFactory;
+
+    public function religion(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Religion::class);
+    }
 }

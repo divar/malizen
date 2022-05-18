@@ -34,11 +34,19 @@
 .field {
     @apply flex;
     @apply flex-col;
+    @apply mx-3;
+    @apply mb-3;
 }
 
 .row {
     @apply flex;
-    @apply flex-row;
+    @apply flex-col;
+    @apply md:flex-row;
+}
+
+.col {
+    @apply flex;
+    @apply flex-col;
 }
 
 .pagination {
@@ -55,4 +63,46 @@
     @apply border-gray-300;
     @apply hover:bg-gray-100;
     @apply hover:text-gray-700;
+}
+
+.title-form {
+    @apply block;
+    @apply uppercase;
+    @apply tracking-wide;
+    @apply text-gray-700;
+    @apply text-xs;
+    @apply font-bold;
+    @apply mb-2;
+}
+
+.input-form {
+    @apply appearance-none;
+    @apply block;
+    @apply w-full;
+    @apply text-gray-700;
+    @apply border;
+    @apply border-gray-200;
+    @apply rounded;
+    @apply py-3;
+    @apply px-4;
+    @apply leading-tight;
+    @apply focus:outline-none;
+    @apply focus:bg-white;
+    @apply focus:border-gray-500;
+}
+
+.input-form-danger {
+    @apply appearance-none;
+    @apply block;
+    @apply w-full;
+    @apply text-gray-700;
+    @apply border;
+    @apply border-red-500;
+    @apply rounded;
+    @apply py-3;
+    @apply px-4;
+    @apply mb-3;
+    @apply leading-tight;
+    @apply focus:outline-none;
+    @apply focus:bg-white;
 }
