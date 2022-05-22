@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\District;
+use App\Models\NeighborhoodAssociation;
 use App\Models\Religion;
 use App\Models\Resident;
+use App\Models\Village;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,6 +37,7 @@ class ResidentController extends Controller
       'user'        => Auth::user(),
       'religions'   => Religion::all(),
       'professions' => Religion::all(),
+      'districts' => District::all(),
     ]);
   }
 

@@ -41,34 +41,32 @@
               <div class="field md:w-1/4">
                 <label class="title-form" for="district">Kecamatan</label>
                 <div class="relative">
-                  <select class="input-form" id="grid-district" name="district" onchange="getVillages(this)">
-                    <option>pilih</option>
-                    @foreach($districts as $district)
-                      <option value="{{$district->id}}">{{$district->name}}</option>
+                  <select class="input-form" id="grid-profession" name="profession">
+                    @foreach($professions as $profession)
+                      <option value="{{$profession->id}}">{{$profession->name}}</option>
                     @endforeach
                   </select>
                 </div>
               </div>
               <div class="field md:w-1/4">
-                <label class="title-form" for="village">Kelurahan</label>
+                <label class="title-form" for="district">Kelurahan</label>
                 <div class="relative">
-                  <select class="input-form" id="grid-village" name="village">
+                  <select class="input-form" id="grid-profession" name="profession">
+                    @foreach($professions as $profession)
+                      <option value="{{$profession->id}}">{{$profession->name}}</option>
+                    @endforeach
                   </select>
                 </div>
               </div>
             </div>
             <div class="row space-x-3">
-              <div class="field md:w-1/4">
-                <label class="title-form" for="rt">RT</label>
-                <div class="relative">
-                  <select class="input-form" id="grid-rt" name="rt">
-                  </select>
-                </div>
+              <div class="field">
+                <label class="title-form" for="grid-rt">RT</label>
+                <input class="input-form" id="grid-rt" name="neighborhood_association_id" type="number" placeholder="0">
               </div>
               <div class="field">
                 <label class="title-form" for="grid-rw">RW</label>
-                <input class="input-form bg-gray-100" readonly id="grid-rw" name="citizen_association" type="text"
-                       placeholder="0">
+                <input class="input-form bg-gray-100" readonly id="grid-rw" name="citizen_association" type="text" placeholder="0">
               </div>
               <div class="field lg:w-1/4">
                 <label class="title-form" for="grid-ethnic">Suku</label>
@@ -77,8 +75,7 @@
             </div>
             <div class="field">
               <label class="title-form" for="grid-address">Alamat</label>
-              <textarea class="input-form" readonly id="grid-address" name="address"
-                        placeholder="Jalan Malinau Raya"></textarea>
+              <textarea class="input-form" readonly id="grid-address" name="address" placeholder="Jalan Malinau Raya"></textarea>
             </div>
             <div class="row">
               <div class="field md:w-1/4">
@@ -115,8 +112,7 @@
             </div>
             <div class="field ">
               <label class="title-form" for="grid-daily-activity">Aktivitas</label>
-              <input class="input-form" id="grid-daily-activity" name="daily_activity" type="text"
-                     placeholder="Bekerja dan melakukan penelitian">
+              <input class="input-form" id="grid-daily-activity" name="daily_activity" type="text" placeholder="Bekerja dan melakukan penelitian">
             </div>
             <div class="field md:w-1/4">
               <label class="title-form" for="grid-home-owenership">Kepemilikan Rumah</label>
@@ -133,15 +129,12 @@
                 <label class="title-form" for="grid-is-head-of-family">Merupakan Kepala Keluarga?</label>
                 <span>
                   <input class="" id="grid-is-head-of-family" name="is_head_of_family" type="radio" value="yes"> ya
-                  <input class="" id="grid-is-head-of-family" name="is_head_of_family" type="radio" value="not"
-                         checked="true"> tidak
+                  <input class="" id="grid-is-head-of-family" name="is_head_of_family" type="radio" value="not" checked="true"> tidak
                 </span>
               </div>
               <div class="field lg:w-1/4">
-                <label class="title-form" for="grid-relationship-with-head-of-family">Hubungan Dengan Kepala Keluarga
-                  ?</label>
-                <input class="input-form" id="grid-relationship-with-head-of-family"
-                       name="relationship_with_head_of_family" type="text" placeholder="Adik">
+                <label class="title-form" for="grid-relationship-with-head-of-family">Hubungan Dengan Kepala Keluarga ?</label>
+                <input class="input-form" id="grid-relationship-with-head-of-family" name="relationship_with_head_of_family" type="text" placeholder="Adik">
               </div>
             </div>
           </div>
@@ -149,22 +142,4 @@
       </div>
     </div>
   </div>
-  <x-slot:script>
-    <script>
-        function getVillages(event) {
-            if (event.value === 'pilih') {
-                return ;
-            }
-            axios.get('{{route('api_get_villages')}}')
-                .then(function (response) {
-                    // handle success
-                    console.log(response);
-                })
-                .catch(function (error) {
-                    // handle error
-                    console.log(error);
-                });
-        }
-    </script>
-  </x-slot:script>
 </x-app-layout>

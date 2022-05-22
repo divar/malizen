@@ -8,7 +8,6 @@
   <link href="{{ asset('fontawesome/css/fontawesome.css') }}" rel="stylesheet">
   <link href="{{ asset('fontawesome/css/brands.css') }}" rel="stylesheet">
   <link href="{{ asset('fontawesome/css/solid.css') }}" rel="stylesheet">
-
   <title>{{ isset($title_page) ? $title_page : config('app.name', 'Laravel') }}</title>
 
   <!-- Fonts -->
@@ -36,4 +35,5 @@
   </div>
 </div>
 </body>
+{{ isset($script) ? $script : '' }}
 </html>
