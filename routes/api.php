@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers\Api\VillageController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,5 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('v1/villages', [\App\Http\Controllers\Api\VillageController::class, 'GetVillages'])->name('api_get_villages');
+    Route::get('v1/villages', [VillageController::class, 'GetVillages'])->name('api_get_villages');
 });

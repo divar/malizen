@@ -3,45 +3,65 @@
 namespace App\Http\Controllers;
 
 use App\Models\CitizenAssociation;
+use App\Models\NeighborhoodAssociation;
+use App\Models\Village;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CitizenAssociationController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        return view('pages.citizen-association.index', [
+            'user'                 => Auth::user(),
+            'citizen_associations' => CitizenAssociation::paginate(10)
+        ]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('pages.citizen-association.create', [
+            'title_page' => 'Buat RW',
+            'user'       => Auth::user(),
+            'villages'   => Village::orderBy('name')->get()
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        DB::transaction(function () use ($request) {
+            $village = Village::find($request->get('village_id'));
+
+            $rw             = new CitizenAssociation();
+            $rw->name       = $request->get('name');
+            $rw->created_by = Auth::user()->id;
+
+            $village->citizenAssociations()->save($rw);
+        });
+        return response()->redirectTo('v1/rws');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CitizenAssociation  $citizenAssociation
+     * @param \App\Models\CitizenAssociation $citizenAssociation
      * @return \Illuminate\Http\Response
      */
     public function show(CitizenAssociation $citizenAssociation)
@@ -52,7 +72,7 @@ class CitizenAssociationController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\CitizenAssociation  $citizenAssociation
+     * @param \App\Models\CitizenAssociation $citizenAssociation
      * @return \Illuminate\Http\Response
      */
     public function edit(CitizenAssociation $citizenAssociation)
@@ -63,8 +83,8 @@ class CitizenAssociationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CitizenAssociation  $citizenAssociation
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\CitizenAssociation $citizenAssociation
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, CitizenAssociation $citizenAssociation)
@@ -75,7 +95,7 @@ class CitizenAssociationController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CitizenAssociation  $citizenAssociation
+     * @param \App\Models\CitizenAssociation $citizenAssociation
      * @return \Illuminate\Http\Response
      */
     public function destroy(CitizenAssociation $citizenAssociation)

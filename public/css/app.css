@@ -779,6 +779,12 @@ select {
 .basis-1\/5 {
   flex-basis: 20%;
 }
+.basis-1\/12 {
+  flex-basis: 8.333333%;
+}
+.basis-auto {
+  flex-basis: auto;
+}
 .origin-top-left {
   transform-origin: top left;
 }
@@ -822,6 +828,12 @@ select {
 .flex-col {
   flex-direction: column;
 }
+.place-items-end {
+  place-items: end;
+}
+.content-end {
+  align-content: flex-end;
+}
 .items-center {
   align-items: center;
 }
@@ -833,6 +845,9 @@ select {
 }
 .justify-between {
   justify-content: space-between;
+}
+.justify-items-end {
+  justify-items: end;
 }
 .justify-items-center {
   justify-items: center;
@@ -859,6 +874,12 @@ select {
   --tw-space-x-reverse: 0;
   margin-right: calc(2rem * var(--tw-space-x-reverse));
   margin-left: calc(2rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.place-self-end {
+  place-self: end;
+}
+.justify-self-end {
+  justify-self: end;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1574,6 +1595,30 @@ select {
 
   .sm\:h-20 {
     height: 5rem;
+  }
+
+  .sm\:w-2\/3 {
+    width: 66.666667%;
+  }
+
+  .sm\:w-1\/3 {
+    width: 33.333333%;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
+  }
+
+  .sm\:w-12 {
+    width: 3rem;
+  }
+
+  .sm\:w-20 {
+    width: 5rem;
+  }
+
+  .sm\:w-40 {
+    width: 10rem;
   }
 
   .sm\:max-w-md {
