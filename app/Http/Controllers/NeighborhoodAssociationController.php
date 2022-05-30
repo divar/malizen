@@ -54,7 +54,7 @@ class NeighborhoodAssociationController extends Controller
             $citizenAssociation = CitizenAssociation::find($request->get('citizen_association_id'));
 
             if (!$village) {
-
+                return abort(400);
             }
 
             $rt             = new NeighborhoodAssociation();

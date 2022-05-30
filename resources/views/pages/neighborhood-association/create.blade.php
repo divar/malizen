@@ -15,9 +15,10 @@
               {{-- <p class="text-red-500 text-xs italic">Please fill out this field.</p>--}}
             </div>
             <div class="field md:w-1/4">
-              <label class="title-form" for="grid-profession">Village</label>
+              <label class="title-form" for="grid-village-id">Village</label>
               <div class="relative">
-                <select class="input-form" id="grid-profession" name="village_id" onchange="villageHasChange(this)">
+                <select class="input-form" id="grid-village-id" name="village_id" onchange="villageHasChange(this)">
+                  <option value="">pilih</option>
                   @foreach($villages as $village)
                     <option value="{{$village->id}}">{{$village->name}}</option>
                   @endforeach
@@ -25,9 +26,9 @@
               </div>
             </div>
             <div class="field md:w-1/4">
-              <label class="title-form" for="grid-profession">RW</label>
+              <label class="title-form" for="grid-citizen-association-id">RW</label>
               <div class="relative">
-                <select class="input-form" id="grid-profession" name="citizen_association_id">
+                <select class="input-form" id="grid-citizen-association-id" name="citizen_association_id">
                 </select>
               </div>
             </div>
@@ -42,14 +43,19 @@
   <x-slot:script>
     <script>
         function villageHasChange(village) {
-            axios.get('{{route('api_get_rws')}}')
+            axios.get('{{route('api_get_rws')}}', {params: {village_id: village.value}})
                 .then(function (response) {
-                    // handle success
-                    console.log(response);
+                    let options = '<option value="">Pilih</option>';
+                    response.data.forEach(item => {
+                      options = options + `<option value="${item.id}">${item.name}</option>`;
+                    });
+                    $("#grid-citizen-association-id")
+                        .find('option')
+                        .remove()
+                        .end()
+                        .append(options)
                 })
                 .catch(function (error) {
-                    // handle error
-                    console.log(error);
                 });
         }
     </script>

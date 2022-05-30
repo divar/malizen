@@ -16,6 +16,12 @@
     </div>
   </div>
   <div class="field basis-auto">
+    <div class="field">
+      <span class="font-bold">RW</span>
+      <span class="">{{$neighborhood_association->citizenAssociation ? $neighborhood_association->citizenAssociation->name : '-'}}</span>
+    </div>
+  </div>
+  <div class="field basis-auto">
     <span class="font-bold">Created At</span>
     <span class="">{{$neighborhood_association->created_at}}</span>
   </div>

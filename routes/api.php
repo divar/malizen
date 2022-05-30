@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\VillageController;
+use \App\Http\Controllers\Api\CitizenAssociationController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -19,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('v1/villages', [VillageController::class, 'GetVillages'])->name('api_get_villages');
+    Route::get('v1/citizen-associations', [CitizenAssociationController::class, 'GetCitizenAssociations'])->name('api_get_rws');
 });
