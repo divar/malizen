@@ -11,6 +11,9 @@
             @include('components.resident.list-item', ['r' => $resident])
           </div>
         @endforeach
+        @if(count($residents) === 0)
+          @include('components.empty-list-item', ['entity' => 'Penduduk'])
+        @endif
         {{$residents->links('vendor.pagination.tailwind')}}
       </div>
     </div>

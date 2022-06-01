@@ -11,6 +11,9 @@
             @include('components.citizen-association.list-item', ['citizen_association' => $citizen_association])
           </div>
         @endforeach
+        @if(count($citizen_associations) === 0)
+          @include('components.empty-list-item', ['entity' => 'RW'])
+        @endif
         {{$citizen_associations->links('vendor.pagination.tailwind')}}
       </div>
     </div>

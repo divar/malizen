@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Proffesion;
+use App\Models\Profession;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class ProffesionController extends Controller
+class ProfessionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        return view('pages.profession.index', [
+            'user'     => Auth::user(),
+            'professions' => Profession::paginate(10)
+        ]);
     }
 
     /**
@@ -41,10 +45,10 @@ class ProffesionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Proffesion  $proffesion
+     * @param  \App\Models\Profession  $proffesion
      * @return \Illuminate\Http\Response
      */
-    public function show(Proffesion $proffesion)
+    public function show(Profession $proffesion)
     {
         //
     }
@@ -52,10 +56,10 @@ class ProffesionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Proffesion  $proffesion
+     * @param  \App\Models\Profession  $proffesion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Proffesion $proffesion)
+    public function edit(Profession $proffesion)
     {
         //
     }
@@ -64,10 +68,10 @@ class ProffesionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Proffesion  $proffesion
+     * @param  \App\Models\Profession  $proffesion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Proffesion $proffesion)
+    public function update(Request $request, Profession $proffesion)
     {
         //
     }
@@ -75,10 +79,10 @@ class ProffesionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Proffesion  $proffesion
+     * @param  \App\Models\Profession  $proffesion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Proffesion $proffesion)
+    public function destroy(Profession $proffesion)
     {
         //
     }

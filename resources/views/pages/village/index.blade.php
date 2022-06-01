@@ -11,6 +11,9 @@
             @include('components.village.list-item', ['v' => $village])
           </div>
         @endforeach
+        @if(count($villages) === 0)
+          @include('components.empty-list-item', ['entity' => 'Kelurahan'])
+        @endif
         {{$villages->links('vendor.pagination.tailwind')}}
       </div>
     </div>

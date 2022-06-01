@@ -49,6 +49,16 @@ class DistrictController extends Controller
         DB::transaction(function () use ($request) {
             $city = City::find($request->get('city_id'));
 
+            if (!$city) {
+                return abort(404);
+            }
+
+            $existingDistrict = District::where('name', ltrim($request->get('name'), "0"))->first();
+
+            if (!$existingDistrict) {
+                return response()->redirectTo('v1/districts');
+            }
+
             $district             = new District();
             $district->name       = $request->get('name');
             $district->created_by = Auth::user()->id;

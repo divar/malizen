@@ -11,6 +11,9 @@
             @include('components.district.list-item', ['d' => $district])
           </div>
         @endforeach
+        @if(count($districts) === 0)
+          @include('components.empty-list-item', ['entity' => 'Kecamatan'])
+        @endif
         {{$districts->links('vendor.pagination.tailwind')}}
       </div>
     </div>

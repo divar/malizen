@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Religion;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReligionController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function index()
     {
-        //
+        return view('pages.religion.index', [
+            'user'     => Auth::user(),
+            'religions' => Religion::paginate(10)
+        ]);
     }
 
     /**

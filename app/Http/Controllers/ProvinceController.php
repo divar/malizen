@@ -46,6 +46,12 @@ class ProvinceController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
+            $existingProvince                 = Province::where('name', ltrim($request->get('name'), "0"))->first();
+
+            if (!$existingProvince) {
+                return response()->redirectTo('v1/provinces');
+            }
+
             $province             = new Province();
             $province->name       = $request->get('name');
             $province->created_by = Auth::user()->id;

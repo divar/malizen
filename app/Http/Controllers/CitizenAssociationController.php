@@ -47,7 +47,16 @@ class CitizenAssociationController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
+            $existingRw                 = CitizenAssociation::where('name', ltrim($request->get('name'), "0"))->first();
             $village = Village::find($request->get('village_id'));
+
+            if (!$village) {
+                return abort(400);
+            }
+
+            if (!$existingRw) {
+                return response()->redirectTo('v1/rws');
+            }
 
             $rw             = new CitizenAssociation();
             $rw->name       = $request->get('name');

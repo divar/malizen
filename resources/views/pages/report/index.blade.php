@@ -11,6 +11,9 @@
             @include('components.resident.list-item', ['r' => $resident])
           </div>
         @endforeach
+        @if(count($neighborhood_associations) === 0)
+          @include('components.empty-list-item', ['entity' => 'RT'])
+        @endif
         {{$residents->links('vendor.pagination.tailwind')}}
       </div>
     </div>

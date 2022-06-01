@@ -49,6 +49,17 @@ class VillageController extends Controller
         DB::transaction(function () use ($request) {
             $district = District::find($request->get('district_id'));
 
+            if (!$district) {
+                return abort(404);
+            }
+
+            $existingVillage = Village::where('name', ltrim($request->get('name'), "0"))->first();
+
+            if (!$existingVillage) {
+                return response()->redirectTo('v1/villages');
+            }
+
+
             $village             = new Village();
             $village->name       = $request->get('name');
             $village->created_by = Auth::user()->id;

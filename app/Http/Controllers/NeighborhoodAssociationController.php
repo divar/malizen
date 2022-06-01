@@ -50,11 +50,16 @@ class NeighborhoodAssociationController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $village = Village::find($request->get('village_id'));
+            $existingRt                 = NeighborhoodAssociation::where('name', ltrim($request->get('name'), "0"))->first();
+            $village            = Village::find($request->get('village_id'));
             $citizenAssociation = CitizenAssociation::find($request->get('citizen_association_id'));
 
             if (!$village) {
                 return abort(400);
+            }
+
+            if (!$existingRt) {
+                return response()->redirectTo('v1/rts');
             }
 
             $rt             = new NeighborhoodAssociation();

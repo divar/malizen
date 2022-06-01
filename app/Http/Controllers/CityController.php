@@ -48,8 +48,18 @@ class CityController extends Controller
         DB::transaction(function () use ($request) {
             $province = Province::find($request->get('province_id'));
 
+            if (!$province) {
+                return abort(404);
+            }
+
+            $existingCity                 = City::where('name', ltrim($request->get('name'), "0"))->first();
+
+            if (!$existingCity) {
+                return response()->redirectTo('v1/cities');
+            }
+
             $city             = new City();
-            $city->name       = $request->get('name');
+            $city->name       = $request->get('cities');
             $city->created_by = Auth::user()->id;
 
             $province->cities()->save($city);

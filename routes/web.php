@@ -9,7 +9,7 @@ use App\Http\Controllers\VillageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NeighborhoodAssociationController;
 use App\Http\Controllers\CitizenAssociationController;
-use App\Http\Controllers\ProffesionController;
+use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ReligionController;
 
 Route::middleware('auth')->group(function () {
@@ -25,8 +25,8 @@ Route::middleware('auth')->group(function () {
         'v1/residents'  => ResidentController::class,
         'v1/rts'        => NeighborhoodAssociationController::class,
         'v1/rws'        => CitizenAssociationController::class,
-        'v1/religion'   => ReligionController::class,
-        'v1/profession' => ProffesionController::class,
+        'v1/religions'   => ReligionController::class,
+        'v1/professions' => ProfessionController::class,
     ]);
 });
 

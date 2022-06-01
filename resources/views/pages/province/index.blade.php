@@ -11,6 +11,9 @@
             @include('components.province.list-item', ['p' => $province])
           </div>
         @endforeach
+        @if(count($neighborhood_associations) === 0)
+          @include('components.empty-list-item', ['entity' => 'RT'])
+        @endif
         {{$provinces->links('vendor.pagination.tailwind')}}
       </div>
     </div>
