@@ -55,7 +55,7 @@ class DistrictController extends Controller
 
             $existingDistrict = District::where('name', ltrim($request->get('name'), "0"))->first();
 
-            if (!$existingDistrict) {
+            if ($existingDistrict) {
                 return response()->redirectTo('v1/districts');
             }
 
@@ -63,7 +63,7 @@ class DistrictController extends Controller
             $district->name       = $request->get('name');
             $district->created_by = Auth::user()->id;
 
-            $city->districts()->save($district);
+            return $city->districts()->save($district);
         });
         return response()->redirectTo('v1/districts');
     }

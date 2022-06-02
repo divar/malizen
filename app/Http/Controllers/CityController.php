@@ -54,7 +54,7 @@ class CityController extends Controller
 
             $existingCity                 = City::where('name', ltrim($request->get('name'), "0"))->first();
 
-            if (!$existingCity) {
+            if ($existingCity) {
                 return response()->redirectTo('v1/cities');
             }
 
@@ -62,7 +62,7 @@ class CityController extends Controller
             $city->name       = $request->get('cities');
             $city->created_by = Auth::user()->id;
 
-            $province->cities()->save($city);
+            return $province->cities()->save($city);
         });
         return response()->redirectTo('v1/cities');
     }

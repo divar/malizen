@@ -53,7 +53,7 @@
                         .find('option')
                         .remove()
                         .end()
-                        .append(options)
+                        .append(options);
                 })
                 .catch(function (error) {
                 });

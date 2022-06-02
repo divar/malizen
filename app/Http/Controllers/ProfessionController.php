@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Profession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfessionController extends Controller
 {
@@ -24,22 +25,36 @@ class ProfessionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function create()
     {
-        //
+        return view('pages.profession.create', [
+            'title_page' => 'Buat Profesi',
+            'user'       => Auth::user(),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        //
+        DB::transaction(function () use ($request) {
+            $existingProfession = Profession::where('name', $request->get('name'))->first();
+
+            if ($existingProfession) {
+                return response()->redirectTo('v1/professions');
+            }
+            $profession             = new Profession();
+            $profession->name       = $request->get('name');
+            $profession->created_by = Auth::user()->id;
+            return $profession->save();
+        });
+        return response()->redirectTo('v1/professions');
     }
 
     /**

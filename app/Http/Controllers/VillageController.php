@@ -55,7 +55,7 @@ class VillageController extends Controller
 
             $existingVillage = Village::where('name', ltrim($request->get('name'), "0"))->first();
 
-            if (!$existingVillage) {
+            if ($existingVillage) {
                 return response()->redirectTo('v1/villages');
             }
 
@@ -64,7 +64,7 @@ class VillageController extends Controller
             $village->name       = $request->get('name');
             $village->created_by = Auth::user()->id;
 
-            $district->villages()->save($village);
+            return $district->villages()->save($village);
         });
         return response()->redirectTo('v1/villages');
     }

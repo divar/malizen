@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class VillageController extends Controller
 {
-    public function GetVillages (): \Illuminate\Http\JsonResponse
+    public function GetVillages(Request $request): \Illuminate\Http\JsonResponse
     {
-        $villages = Village::all();
+        $districtId = $request->get('district-id', 0);
+
+        if ($districtId <= 0) {
+            return response()->json([]);
+        }
+
+        $villages = Village::where('district_id', $districtId)->orderBy('name')->get();
+
         return response()->json($villages);
     }
 }

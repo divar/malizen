@@ -58,7 +58,7 @@ class NeighborhoodAssociationController extends Controller
                 return abort(400);
             }
 
-            if (!$existingRt) {
+            if ($existingRt) {
                 return response()->redirectTo('v1/rts');
             }
 
@@ -69,7 +69,7 @@ class NeighborhoodAssociationController extends Controller
             if ($citizenAssociation) {
                 $rt->citizenAssociation()->associate($citizenAssociation);
             }
-            $rt->save();
+            return $rt->save();
         });
         return response()->redirectTo('v1/rts');
     }

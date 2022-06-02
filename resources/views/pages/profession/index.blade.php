@@ -4,7 +4,7 @@
       <div class="flex flex-row-reverse w-full">
         <a href="{{url('v1/professions/create')}}" class="btn btn-blue rounded-md">Create</a>
       </div>
-      <span class="font-bold text-cyan-700">Profession</span>
+      <span class="font-bold text-cyan-700">Profesi</span>
       <div class="card space-y-2">
         @foreach($professions as $profession)
           <div class="shadow-sm p-6 border border-gray-200 rounded-lg ">

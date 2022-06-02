@@ -62,7 +62,7 @@ class CitizenAssociationController extends Controller
             $rw->name       = $request->get('name');
             $rw->created_by = Auth::user()->id;
 
-            $village->citizenAssociations()->save($rw);
+            return $village->citizenAssociations()->save($rw);
         });
         return response()->redirectTo('v1/rws');
     }

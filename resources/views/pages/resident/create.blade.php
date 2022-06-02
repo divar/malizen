@@ -39,7 +39,7 @@
             </div>
             <div class="row space-x-3">
               <div class="field md:w-1/4">
-                <label class="title-form" for="district">Kecamatan</label>
+                <label class="title-form" for="grid-district">Kecamatan</label>
                 <div class="relative">
                   <select class="input-form" id="grid-district" name="district" onchange="getVillages(this)">
                     <option>pilih</option>
@@ -50,25 +50,27 @@
                 </div>
               </div>
               <div class="field md:w-1/4">
-                <label class="title-form" for="village">Kelurahan</label>
+                <label class="title-form" for="grid-village">Kelurahan</label>
                 <div class="relative">
-                  <select class="input-form" id="grid-village" name="village">
+                  <select class="input-form" id="grid-village" name="village"
+                          onchange="getNeighborhoodAssociations(this)">
+                    <option value="">Pilih</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="row space-x-3">
               <div class="field md:w-1/4">
-                <label class="title-form" for="rt">RT</label>
+                <label class="title-form" for="grid-rt">RT</label>
                 <div class="relative">
-                  <select class="input-form" id="grid-rt" name="rt">
+                  <select class="input-form" id="grid-rt" name="rt" onchange="choosedNeighborhoodAssociation(this)">
+                    <option value="">Pilih</option>
                   </select>
                 </div>
               </div>
               <div class="field">
                 <label class="title-form" for="grid-rw">RW</label>
-                <input class="input-form bg-gray-100" readonly id="grid-rw" name="citizen_association" type="text"
-                       placeholder="0">
+                <input class="input-form bg-gray-100" readonly id="grid-rw" name="citizen_association" type="text">
               </div>
               <div class="field lg:w-1/4">
                 <label class="title-form" for="grid-ethnic">Suku</label>
@@ -106,6 +108,7 @@
                 <label class="title-form" for="grid-profession">Profesi</label>
                 <div class="relative">
                   <select class="input-form" id="grid-profession" name="profession">
+                    <option>pilih</option>
                     @foreach($professions as $profession)
                       <option value="{{$profession->id}}">{{$profession->name}}</option>
                     @endforeach
@@ -151,19 +154,74 @@
   </div>
   <x-slot:script>
     <script>
+        let neighborhoodAssociations = [];
+
         function getVillages(event) {
             if (event.value === 'pilih') {
-                return ;
+                $("#grid-village")
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="">Pilih</option>');
+                return;
             }
-            axios.get('{{route('api_get_villages')}}')
+            axios.get('{{route('api_get_villages')}}', {params: {'district-id': event.value}})
                 .then(function (response) {
-                    // handle success
-                    console.log(response);
+                    let options = '<option value="">Pilih</option>';
+                    response.data.forEach(item => {
+                        options = options + `<option value="${item.id}">${item.name}</option>`;
+                    });
+
+                    $("#grid-village")
+                        .find('option')
+                        .remove()
+                        .end()
+                        .append(options);
                 })
                 .catch(function (error) {
-                    // handle error
-                    console.log(error);
+                    alert('something went wrong, try again !');
                 });
+        }
+
+        function getNeighborhoodAssociations(event) {
+            if (event.value === 'pilih') {
+                $("#grid-rt")
+                    .find('option')
+                    .remove()
+                    .end()
+                    .append('<option value="">Pilih</option>');
+                return;
+            }
+            axios.get('{{route('api_get_rts')}}', {params: {'village-id': event.value}})
+                .then((response) => {
+                    let options = '<option value="">Pilih</option>';
+                    response.data.forEach(item => {
+                        options = options + `<option value="${item.id}">${item.name}</option>`;
+                    });
+
+                    neighborhoodAssociations = response.data;
+
+                    $("#grid-rt")
+                        .find('option')
+                        .remove()
+                        .end()
+                        .append(options);
+                })
+                .catch((error) => {
+                    console.log(error)
+                    alert('something went wrong, try again !');
+                });
+        }
+
+        function choosedNeighborhoodAssociation(event) {
+            let selectedNeighborhoodAssociation = neighborhoodAssociations.filter(item => {
+                return parseInt(item.id) === parseInt(event.value);
+            });
+            if (selectedNeighborhoodAssociation.length > 0 && selectedNeighborhoodAssociation[0].citizen_association) {
+                $("#grid-rw").val(selectedNeighborhoodAssociation[0].citizen_association.name)
+            } else {
+                $("#grid-rw").val('')
+            }
         }
     </script>
   </x-slot:script>
