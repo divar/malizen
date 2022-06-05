@@ -24,4 +24,12 @@ class Resident extends Model
     {
         return $this->belongsTo(Religion::class);
     }
+    public function profession(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Profession::class);
+    }
+    public function neighborhoodAssociation(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(NeighborhoodAssociation::class);
+    }
 }

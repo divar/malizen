@@ -96,8 +96,8 @@
     @apply block;
     @apply w-full;
     @apply text-gray-700;
-    @apply border;
-    @apply border-red-500;
+    @apply border-2;
+    @apply border-rose-500;
     @apply rounded;
     @apply py-3;
     @apply px-4;
