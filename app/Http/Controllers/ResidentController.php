@@ -89,11 +89,15 @@ class ResidentController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Resident $resident
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Resident $resident)
     {
-        //
+        return view('pages.resident.show', [
+            'title_page'  => 'View Penduduk',
+            'user'     => Auth::user(),
+            'resident' => $resident
+        ]);
     }
 
     /**

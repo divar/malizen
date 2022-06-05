@@ -2,7 +2,7 @@
   <div class="py-3">
     <div class="mx-auto sm:px-3 lg:px-6">
       <div class="flex flex-row-reverse w-full">
-        <a href="{{url('v1/rts/create')}}" class="btn btn-blue rounded-md">Create</a>
+        <a href="{{url('v1/neighborhood-associations/create')}}" class="btn btn-blue rounded-md">Create</a>
       </div>
       <span class="font-bold text-cyan-700">RT</span>
       <div class="card space-y-2">

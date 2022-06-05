@@ -73,11 +73,14 @@ class VillageController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Village $village
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Village $village)
     {
-        //
+        return view('pages.village.show', [
+            'title_page' => 'View User',
+            'village'       => $village,
+        ]);
     }
 
     /**

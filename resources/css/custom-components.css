@@ -70,8 +70,17 @@
     @apply uppercase;
     @apply tracking-wide;
     @apply text-gray-700;
-    @apply text-xs;
+    @apply text-sm;
     @apply font-bold;
+    @apply mb-2;
+}
+
+.label-text {
+    @apply block;
+    @apply uppercase;
+    @apply tracking-wide;
+    @apply text-gray-700;
+    @apply text-sm;
     @apply mb-2;
 }
 

@@ -59,7 +59,7 @@ class NeighborhoodAssociationController extends Controller
             }
 
             if ($existingRt) {
-                return response()->redirectTo('v1/rts');
+                return response()->redirectTo('v1/neighborhood-associations');
             }
 
             $rt             = new NeighborhoodAssociation();
@@ -71,18 +71,21 @@ class NeighborhoodAssociationController extends Controller
             }
             return $rt->save();
         });
-        return response()->redirectTo('v1/rts');
+        return response()->redirectTo('v1/neighborhood-associations');
     }
 
     /**
      * Display the specified resource.
      *
      * @param \App\Models\NeighborhoodAssociation $neighborhoodAssociation
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(NeighborhoodAssociation $neighborhoodAssociation)
     {
-        //
+        return view('pages.neighborhood-association.show', [
+            'title_page' => 'View User',
+            'neighborhood_association'       => $neighborhoodAssociation,
+        ]);
     }
 
     /**

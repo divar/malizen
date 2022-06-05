@@ -4,9 +4,9 @@
       <div class="flex flex-row-reverse w-full">
         {{-- <a href="{{url('v1/residents/create')}}" class="btn btn-blue rounded-md">Create</a>--}}
       </div>
-      <span class="font-bold text-cyan-700">Kota / Kabupaten</span>
+      <span class="font-bold text-cyan-700">RT</span>
       <div class="card space-y-2">
-        <form class="w-full" method="POST" action="{{url('v1/rts')}}">
+        <form class="w-full" method="POST" action="{{url('v1/neighborhood-associations')}}">
           @csrf
           <div class="col">
             <div class="field">

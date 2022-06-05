@@ -4,7 +4,7 @@
       <div class="flex flex-row-reverse w-full">
         <a href="{{url('v1/religions/create')}}" class="btn btn-blue rounded-md">Create</a>
       </div>
-      <span class="font-bold text-cyan-700">Religion</span>
+      <span class="font-bold text-cyan-700">Agama</span>
       <div class="card space-y-2">
         @foreach($religions as $religion)
           <div class="shadow-sm p-6 border border-gray-200 rounded-lg ">

@@ -71,11 +71,14 @@ class CityController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\City $city
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(City $city)
     {
-        //
+        return view('pages.city.show', [
+            'title_page' => 'View User',
+            'city'       => $city,
+        ]);
     }
 
     /**

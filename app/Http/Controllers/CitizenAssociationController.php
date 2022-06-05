@@ -47,15 +47,15 @@ class CitizenAssociationController extends Controller
     public function store(Request $request)
     {
         DB::transaction(function () use ($request) {
-            $existingRw                 = CitizenAssociation::where('name', ltrim($request->get('name'), "0"))->first();
-            $village = Village::find($request->get('village_id'));
+            $existingRw = CitizenAssociation::where('name', ltrim($request->get('name'), "0"))->first();
+            $village    = Village::find($request->get('village_id'));
 
             if (!$village) {
                 return abort(400);
             }
 
             if (!$existingRw) {
-                return response()->redirectTo('v1/rws');
+                return response()->redirectTo('v1/citizen-associations');
             }
 
             $rw             = new CitizenAssociation();
@@ -64,18 +64,21 @@ class CitizenAssociationController extends Controller
 
             return $village->citizenAssociations()->save($rw);
         });
-        return response()->redirectTo('v1/rws');
+        return response()->redirectTo('v1/citizen-associations');
     }
 
     /**
      * Display the specified resource.
      *
      * @param \App\Models\CitizenAssociation $citizenAssociation
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(CitizenAssociation $citizenAssociation)
     {
-        //
+        return view('pages.citizen-association.show', [
+            'title_page'          => 'View User',
+            'citizen_association' => $citizenAssociation,
+        ]);
     }
 
     /**

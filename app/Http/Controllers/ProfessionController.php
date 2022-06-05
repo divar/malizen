@@ -60,12 +60,15 @@ class ProfessionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Profession  $proffesion
-     * @return \Illuminate\Http\Response
+     * @param  Profession  $profession
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(Profession $proffesion)
+    public function show(Profession $profession)
     {
-        //
+        return view('pages.profession.show', [
+            'title_page' => 'View User',
+            'profession'       => $profession,
+        ]);
     }
 
     /**

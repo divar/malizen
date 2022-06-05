@@ -40,13 +40,13 @@
                 </a>
             </li>
             <li>
-                <a href="{{url('v1/rts')}}" class="side-navigation-item">
+                <a href="{{url('v1/neighborhood-associations')}}" class="side-navigation-item">
                     <span class="text-gray-500"><i class="fa-solid fa-house"></i></span>
                     <span class="flex-1 ml-3 whitespace-nowrap">RT</span>
                 </a>
             </li>
             <li>
-                <a href="{{url('v1/rws')}}" class="side-navigation-item">
+                <a href="{{url('v1/citizen-associations')}}" class="side-navigation-item">
                     <span class="text-gray-500"><i class="fa-solid fa-house-chimney"></i></span>
                     <span class="flex-1 ml-3 whitespace-nowrap">RW</span>
                 </a>

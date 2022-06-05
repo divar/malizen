@@ -4,7 +4,7 @@
       <div class="flex flex-row-reverse w-full">
         {{-- <a href="{{url('v1/residents/create')}}" class="btn btn-blue rounded-md">Create</a>--}}
       </div>
-      <span class="font-bold text-cyan-700">Kecamatan</span>
+      <span class="font-bold text-cyan-700">Kelurahan</span>
       <div class="card space-y-2">
         <form class="w-full" method="POST" action="{{url('v1/villages')}}">
           @csrf

@@ -72,11 +72,14 @@ class DistrictController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\District $district
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(District $district)
     {
-        //
+        return view('pages.district.show', [
+            'title_page' => 'View district',
+            'district'       => $district,
+        ]);
     }
 
     /**

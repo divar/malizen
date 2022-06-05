@@ -17,4 +17,7 @@
     <span class="font-bold">Created By</span>
     <span class="">{{$p->creator->name}}</span>
   </div>
+  <div class="field shrink">
+    <a href="{{url("/v1/professions",$p->id)}}" class="btn btn-blue rounded-md">View</a>
+  </div>
 </div>

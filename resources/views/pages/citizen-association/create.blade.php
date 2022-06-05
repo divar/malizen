@@ -6,7 +6,7 @@
       </div>
       <span class="font-bold text-cyan-700">RW</span>
       <div class="card space-y-2">
-        <form class="w-full" method="POST" action="{{url('v1/rws')}}">
+        <form class="w-full" method="POST" action="{{url('v1/citizen-associations')}}">
           @csrf
           <div class="col">
             <div class="field">

@@ -60,12 +60,15 @@ class ReligionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Religion $religion
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show($id)
+    public function show(Religion $religion)
     {
-        //
+        return view('pages.religion.show', [
+            'title_page' => 'View User',
+            'religion'       => $religion,
+        ]);
     }
 
     /**

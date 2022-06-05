@@ -64,11 +64,14 @@ class ProvinceController extends Controller
      * Display the specified resource.
      *
      * @param \App\Models\Province $province
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
     public function show(Province $province)
     {
-        //
+        return view('pages.province.show', [
+            'title_page' => 'View User',
+            'province'       => $province,
+        ]);
     }
 
     /**

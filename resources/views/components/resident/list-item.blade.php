@@ -27,6 +27,6 @@
         <span class="">{{$r->religion->name}}</span>
     </div>
     <div class="field shrink">
-        <a href="#" class="btn btn-blue rounded-md">View</a>
+        <a href="{{url("/v1/residents",$r->id)}}" class="btn btn-blue rounded-md">View</a>
     </div>
 </div>

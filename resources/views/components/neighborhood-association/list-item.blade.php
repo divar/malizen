@@ -29,4 +29,7 @@
     <span class="font-bold">Created By</span>
     <span class="">{{$neighborhood_association->creator->name}}</span>
   </div>
+  <div class="field shrink">
+    <a href="{{url("/v1/neighborhood-associations",$neighborhood_association->id)}}" class="btn btn-blue rounded-md">View</a>
+  </div>
 </div>
