@@ -11,6 +11,7 @@ use App\Http\Controllers\NeighborhoodAssociationController;
 use App\Http\Controllers\CitizenAssociationController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\ReligionController;
+use App\Http\Controllers\UserController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('dashboard');
@@ -18,15 +19,16 @@ Route::middleware('auth')->group(function () {
         return response()->view('errors.404', [], 404);
     });
     Route::resources([
-        'v1/provinces'  => ProvinceController::class,
-        'v1/cities'     => CityController::class,
-        'v1/districts'  => DistrictController::class,
-        'v1/villages'   => VillageController::class,
-        'v1/residents'  => ResidentController::class,
-        'v1/rts'        => NeighborhoodAssociationController::class,
-        'v1/rws'        => CitizenAssociationController::class,
+        'v1/provinces'   => ProvinceController::class,
+        'v1/cities'      => CityController::class,
+        'v1/districts'   => DistrictController::class,
+        'v1/villages'    => VillageController::class,
+        'v1/residents'   => ResidentController::class,
+        'v1/rts'         => NeighborhoodAssociationController::class,
+        'v1/rws'         => CitizenAssociationController::class,
         'v1/religions'   => ReligionController::class,
         'v1/professions' => ProfessionController::class,
+        'v1/users'       => UserController::class,
     ]);
 });
 
